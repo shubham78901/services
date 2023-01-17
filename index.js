@@ -39,7 +39,7 @@ app.post("/transfer", async (req, res) => {
   
     var addr=req.body.transfer_to;
 
-    transfer_function.transfer_func(wifi,addr,txid)
+     transfer_function.transfer_func(wifi,addr,txid)
 
     
 
@@ -47,7 +47,59 @@ app.post("/transfer", async (req, res) => {
     res.send("transfer function working")
 })
 
+app.post("/reedem", async (req, res) => {
 
+
+  var wifi=req.body.wif;
+  var txid=req.body.txid;
+   var index=req.body.index;
+
+   var public=req.body.publickey;
+  console.log(public)
+
+
+ transfer_function.reedem_func(wifi,txid,index,public)
+
+ res.send("reedem function called")
+
+})
+app.post("/split", async (req, res) => {
+
+
+ 
+
+  var wifi=req.body.wif;
+  var txid=req.body.txid;
+   var index=req.body.index;
+   var bobAddr=req.body.address;
+  
+   transfer_function.split_func(wifi,txid,index,bobAddr)
+  
+
+ 
+
+
+ res.send(" split function working")
+})
+app.post("/merge", async (req, res) => {
+
+
+ 
+
+  var BobWif=req.body.wif;
+  var splitTxid=req.body.txid;
+   var index1=req.body.index1;
+   var index2=req.body.index2;
+   var aliceAddr=req.body.address;
+  
+   transfer_function.merge_func(BobWif,splitTxid,index1,index2,aliceAddr)
+  
+
+ 
+
+
+ res.send("merge function working")
+})
 
 
 
